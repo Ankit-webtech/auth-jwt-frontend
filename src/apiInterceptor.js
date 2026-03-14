@@ -1,7 +1,7 @@
 import axios from 'axios';
 
-// const server = "http://localhost:5000";
-const server = import.meta.env.VITE_SERVER;
+const server = "http://localhost:5000";
+// const server = import.meta.env.VITE_SERVER;
 
 const getCookie = (name) => {
     const value = `; ${document.cookie}`;
@@ -9,8 +9,12 @@ const getCookie = (name) => {
     if(parts.length === 2) return parts.pop().split(";").shift();
 }
 
+// const api = axios.create({
+//     baseURL: server,
+//     withCredentials: true,
+// });
 const api = axios.create({
-    baseURL: server,
+    baseURL: import.meta.env.VITE_SERVER,
     withCredentials: true,
 });
 
