@@ -1,8 +1,5 @@
 import axios from 'axios';
 
-const server = "http://localhost:5000";
-// const server = import.meta.env.VITE_SERVER;
-
 const getCookie = (name) => {
     const value = `; ${document.cookie}`;
     const parts = value.split(`; ${name}=`);

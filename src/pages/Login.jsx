@@ -2,7 +2,8 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { server } from "../main";
 import { toast } from "react-toastify";
-import axios from "axios";
+import api from "../apiInterceptor";
+
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -16,10 +17,10 @@ const Login = () => {
     e.preventDefault();
     // console.log(email, password);
     try {
-      const { data } = await axios.post(`${server}/api/v1/login`, {
-        email,
-        password,
-      });
+      const { data } = await api.post("/api/v1/login", {
+  email,
+  password
+});
       toast.success(data.message);
       localStorage.setItem("email", email);
       navigate("/verifyotp");
