@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useParams } from "react-router-dom";
-import { server } from "../main";
+// import { server } from "../main";
 import Loding from "../Loding";
-import axios from "axios";
+// import axios from "axios";
 import api from "../apiInterceptor";
 
 const Verify = () => {

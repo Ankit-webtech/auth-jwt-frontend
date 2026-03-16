@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 // import axios from "axios";
 import api from "../apiInterceptor";
-import { server } from "../main";
+// import { server } from "../main";
 import { toast } from "react-toastify";
 import { AppData } from "../context/AppContext";
 

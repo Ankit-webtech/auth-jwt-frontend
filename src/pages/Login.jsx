@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { server } from "../main";
+// import { server } from "../main";
 import { toast } from "react-toastify";
 import api from "../apiInterceptor";
 

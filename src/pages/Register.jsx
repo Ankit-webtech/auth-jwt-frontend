@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { server } from "../main";
+// import { server } from "../main";
 import { toast } from "react-toastify";
-import axios from "axios";
+// import axios from "axios";
+import api from "../apiInterceptor";
 
 
 
@@ -21,7 +22,7 @@ const Register = () => {
     e.preventDefault()
     // console.log(email, password);
     try{
-      const {data} = await axios.post(`${server}/api/v1/register`, {name , email, password})
+const {data} = await api.post("/api/v1/register", {name, email, password})
       toast.success(data.message);
       setName("");
       setEmail("");
