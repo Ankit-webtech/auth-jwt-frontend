@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import axios from "axios";
+// import axios from "axios";
+import api from "../apiInterceptor";
 import { server } from "../main";
 import { toast } from "react-toastify";
 import { AppData } from "../context/AppContext";
@@ -23,13 +24,9 @@ const VerifyOtp = () => {
     }
 
     try {
-      const { data } = await axios.post(
-        `${server}/api/v1/verify-otp`,
-        { email, otp },
-        {
-          withCredentials: true,
-        },
-      );
+
+      const { data } = await api.post("/api/v1/verify-otp", { email, otp });
+
 
       toast.success(data.message);
       await setUser(data.user);

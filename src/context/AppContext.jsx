@@ -29,25 +29,41 @@ export const AppProvider = ({ children }) => {
   // };
 
   // In AppContext.jsx, modify the fetchUser function:
+  // async function fetchUser() {
+  //   setLoading(true);
+  //   try {
+  //     const controller = new AbortController();
+  //     const timeoutId = setTimeout(() => controller.abort(), 5000); // 5 second timeout
+
+  //     // const { data } = await api.get('/api/v1/me', { signal: controller.signal });
+  //     const { data } = await api.get("/api/v1/me");
+  //     setUser(data.user);
+  //     setIsAuth(true);
+  //   } catch (error) {
+  //     console.log("Auth check failed:", error.message);
+  //     setIsAuth(false);
+  //     setUser(null);
+  //   } finally {
+  //     setLoading(false);
+  //   }
+  // }
+
   async function fetchUser() {
-    setLoading(true);
-    try {
-      const controller = new AbortController();
-      const timeoutId = setTimeout(() => controller.abort(), 5000); // 5 second timeout
-
-      // const { data } = await api.get('/api/v1/me', { signal: controller.signal });
-      const { data } = await api.get("/api/v1/me");
-      setUser(data.user);
-      setIsAuth(true);
-    } catch (error) {
-      console.log("Auth check failed:", error.message);
-      setIsAuth(false);
-      setUser(null);
-    } finally {
-      setLoading(false);
-    }
+  setLoading(true);
+  try {
+    const { data } = await api.get("/api/v1/me");
+    setUser(data.user);
+    setIsAuth(true);
+  } catch (error) {
+    setIsAuth(false);
+    setUser(null);
+  } finally {
+    setLoading(false);
   }
+}
 
+
+////// logout user
   async function logoutUser(navigate) {
     try {
       const { data } = await api.post("/api/v1/logout");
