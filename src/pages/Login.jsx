@@ -15,16 +15,14 @@ const Login = () => {
   const submitHandler = async (e) => {
     setBtnLoading(true);
     e.preventDefault();
-    // console.log(email, password);
+
     try {
-      const { data } = await api.post("/api/v1/login", {
-  email,
-  password
-});
+      const { data } = await api.post("/api/v1/login", { email, password });
       toast.success(data.message);
       localStorage.setItem("email", email);
       navigate("/verifyotp");
     } catch (error) {
+      // console.log(error);
       toast.error(error.response.data.message);
     } finally {
       setBtnLoading(false);

@@ -19,20 +19,24 @@ const Register = () => {
 
   const submitHandler = async (e) => {
     setBtnLoading(true);
-    e.preventDefault()
-    // console.log(email, password);
-    try{
-const {data} = await api.post("/api/v1/register", {name, email, password})
+    e.preventDefault();
+
+    try {
+      const { data } = await api.post("/api/v1/register", 
+        { name, email, password }
+      );
       toast.success(data.message);
+      toast.info("Check your email to verify account");
       setName("");
       setEmail("");
       setPassword("");
-    }catch(error){
+    } catch (error) {
+      console.log(error);
       toast.error(error.response.data.message);
-    } finally{
+    } finally {
       setBtnLoading(false);
     }
-  }
+  };
 
   return (
     <>

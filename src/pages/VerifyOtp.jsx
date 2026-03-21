@@ -16,25 +16,19 @@ const VerifyOtp = () => {
     setBtnLoading(true);
     e.preventDefault();
 
-    const email = localStorage.getItem("email");
-    if (!email) {
-      toast.error("Missing email from previous step. Please login again.");
-      setBtnLoading(false);
-      return;
-    }
+    let email = localStorage.getItem("email");
 
     try {
-
       const { data } = await api.post("/api/v1/verify-otp", { email, otp });
 
-
       toast.success(data.message);
-      await setUser(data.user);
+      setUser(data.user);
       setIsAuth(true);
       localStorage.removeItem("email");
       navigate("/");
     } catch (error) {
-      toast.error(error.response?.data?.message || "Failed to verify OTP");
+      console.log(error);
+      toast.error(error.response.data.message);
     } finally {
       setBtnLoading(false);
     }
@@ -80,7 +74,7 @@ const VerifyOtp = () => {
               className="text-white bg-indigo-500 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-600 rounded text-lg"
               disabled={btnLoading}
             >
-              {btnLoading ? "Submitting..." : "Button"}
+              {btnLoading ? "Submitting..." : "Verify"}
             </button>
             <Link to="/login" className="text-xs text-gray-500 mt-3">
               Go to login page
